@@ -190,7 +190,7 @@ WebDriver class simulates the browser actions.
 
 ```python
 from selenium import webdriver
-driver = webdriver.Chrome()
+driver = webdriver.Chrome() # Chrome is class # driver is object
 
 driver.back()
 driver.forward()
@@ -254,3 +254,5 @@ msg_xpah = "//input[@name = 'input-message']"
 2. [HTML document and tags](https://www.w3schools.com/tags/tag_span.asp)
 3. [Learning Selenium Testing Tools with Python (book)](data/Learning_Selenium.pdf)
 4. [What is xpath and how to build them.](https://www.guru99.com/xpath-selenium.html)
+
+changing 

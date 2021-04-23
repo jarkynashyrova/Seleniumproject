@@ -89,3 +89,4 @@ def checkbox_test():
     
     #find the message element and get text
     #verify the checkbox is checked
+
