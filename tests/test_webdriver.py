@@ -1,18 +1,16 @@
 from source.finding_elements import  *
 
 print("Execution starting.....")
-# scenario 1:
+# scenario 1: Webdriver methods,properties,WbEelements ,ethod (input fields)
 url_inputs = "https://www.seleniumeasy.com/test/basic-first-form-demo.html"
+open_website(url_inputs)
+back_forward()
+get_total_input_fields()
 
-#open_website(url_inputs)
-#back_forward()
-#get_total_input_fileds()
-#close_browser()
-
-#scenarion 2:
-url_checkbox = "https://www.seleniumeasy.com/test/basic-first-form-demo.html"
-
+#scenario 2: Handling Checkbox
+url_checkbox = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html"
 open_website(url_checkbox)
-#close_browser()
+# create steps to test checkbox using selenium
+checkbox_test()
 
-print("steps are completed")
+#scenario 3: working with multiple elements, ecommerce website

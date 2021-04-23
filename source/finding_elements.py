@@ -1,25 +1,27 @@
-# Finding the Elements
+# Finding the Elements:
 # by name,
 # by id, ( fastest if the elements ID is unique)
 # by class name,
 # by link text, by partial link text
 
-# by xpath ( customizable, flexible, element hiarchy can be used better),
+# by xpath ( customizable, flexible, element hierachy can be used better),
 # by css selector (customizable, flexible),
 
 # Functions from selenium
 # find_element_by_id(id)
 
-#1. start the browser
+# start the browser
 from selenium import webdriver
-
-from utilities import *
+from selenium.common.exceptions import NoSuchElementException
+#from selenium.webdriver.common.keys import Keys
 
 # Global
+from utilities import *
+
 driver = webdriver.Chrome()
-driver.implicitly_wait(20)
-driver.maximize_window()
 # implicit wait is defined once when you start the browser and this will apply all find element steps
+driver.implicitly_wait(5)
+driver.maximize_window()
 
 def open_website(url):
     """open the website, and click on 'No, thanks! button"""
@@ -35,7 +37,6 @@ def open_website(url):
         print(f'pop did not appear this time.\n{err}')
 
 def back_forward():
-
     img1 = f'./../screenshots/{get_str_seconds()}datapage.png'
     img2 = f'./../screenshots/{get_str_seconds()}seleniumdemo.png'
 
@@ -43,13 +44,14 @@ def back_forward():
     time.sleep(5)
     print(f"Title of the page 2: {driver.title}")
     driver.get_screenshot_as_file(img1)
+
     driver.forward()
     print(f"Title of the page 3: {driver.title}")
-    driver.get_screenshot_as_file(f'screenshots/{get_str_seconds()}_seleniumdemo.png')
+    driver.get_screenshot_as_file(img2)
     time.sleep(5)
 
 
-def get_total_input_fileds():
+def get_total_input_fields():
     """
     find the "Enter a" input box
     find the "Enter b" input box
@@ -64,9 +66,8 @@ def get_total_input_fileds():
 
     # find the "Get Total"button, then click on that button
     driver.execute_script("window.scrollTo(0,document.body.scrollHeight);")
-    sum_button=driver.find_element_by_xpath("//button[text()='Get Total']")
-
-    #sum_button=driver.find_element_by_class_name(btn btn -defoult")
+    sum_button = driver.find_element_by_xpath("//button[text()='Get Total']")
+    #sum_button = driver.find_element_by_class_name(btn btn -defoult")
     sum_button.click()
     driver.get_screenshot_as_file(img1)
 
@@ -78,15 +79,21 @@ def close_browser():
 
 def checkbox_test():
     # todo: code here
-    pass
     #find the element(using xpath) to check, and click
-    check_xpath = "//input[@id='isAgeSelected]"  
+    check_xpath = "//input[@id='isAgeSelected']"
 
     print("checkbox test started....")
     checkbox = driver.find_element_by_xpath(check_xpath)
     checkbox.click()
     time.sleep(5)
     
-    #find the message element and get text
     #verify the checkbox is checked
+    print(f"Is Checkbox Selected (True/False): {checkbox.is_selected()}")
 
+    #find the message element and get text
+    msg_css_selector = "#txtage"
+    msg = driver.find_element_by_css_selector(msg_css_selector)
+    msg_text = msg.txt
+    print(f"Final message: {msg_text}")
+
+    assert "Success" in msg_text
