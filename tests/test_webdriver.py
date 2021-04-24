@@ -14,3 +14,7 @@ open_website(url_checkbox)
 checkbox_test()
 
 #scenario 3: working with multiple elements, ecommerce website
+
+# click on last product >  products[-1]
+products[-1].click()
+driver.refresh()

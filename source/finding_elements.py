@@ -97,3 +97,54 @@ def checkbox_test():
     print(f"Final message: {msg_text}")
 
     assert "Success" in msg_text
+
+def ecommerce_search():
+    # find the element by ID
+    # Search for dress(hit enter or click on search button)
+
+    srch_box = driver.find_element_by_id("search query_top")
+    srch_box.send_keys("dress")
+    srch_box.send_keys(Keys.RETURN)
+    time.sleep(5)
+
+    # get the list of products and get the text out of each product
+    #     use find elements to find products listed, this returns a list named 'products'
+    #     loop through this list and use element.text
+    # check the count of products
+
+    prods_xpath = "//ul[@class='product_list grid row']//a[@class='product-name']"
+    products = driver.find_elements_by_xpath(prods_xpath)  # list
+    prod_names = []
+    for product in products:
+        prod_names.append(product.text.strip())
+
+        #     we have a list of elements, len(products)
+        print(f"we have {len(products)} products listed.")
+        # click on last product >  products[-1]
+        products[-1].click()
+        driver.refresh()
+
+    def amazon_example():
+        """
+        demonstrates some methods from WebDriver Class.
+        (current_url, driver.title, driver.clear,
+        """
+        # driver = webdriver.Chrome()
+        host = "https://www.amazon.com/"
+        driver.get(host)
+        host = driver.current_url  # this will return the current page url
+
+        print(host)  # 'https://www.amazon.com/'
+        if driver.current_url == host:
+            print("yess test passed")
+        else:
+            print("noo test failed")
+
+        print(f"Title of the current page: {driver.title}")
+        'Amazon.com: Online Shopping for Electronics, Apparel, Computers, Books, DVDs & more'
+        search_box = driver.find_element_by_id("twotabsearchtextbox")
+        search_box.send_keys("kids toys")
+
+        search_box.send_keys(Keys.RETURN)
+        search_box.clear()
+        
