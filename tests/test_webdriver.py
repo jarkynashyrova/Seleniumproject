@@ -1,20 +1,20 @@
-# from source.finding_elements import *
-#
-# print("Execution starting.....")
-# # scenario 1: Webdriver methods,properties,WbEelements ,ethod (input fields)
+# from source.finding_elements import*
+
+# print("Execution starting....")
+# #scenario1
 # url_inputs = "https://www.seleniumeasy.com/test/basic-first-form-demo.html"
+#
 # open_website(url_inputs)
 # back_forward()
 # get_total_input_fields()
+# #close_browser()
 #
-# #scenario 2: Handling Checkbox
+#
+# # scenario2
 # url_checkbox = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html"
+#
 # open_website(url_checkbox)
-# # create steps to test checkbox using selenium
 # checkbox_test()
-#
-# #scenario 3: working with multiple elements, ecommerce website
-#
-# # click on last product >  products[-1]
-# products[-1].click()
-# driver.refresh()
+# #back_forward(url_inputs)
+# close_browser()
+# print("steps are completed")

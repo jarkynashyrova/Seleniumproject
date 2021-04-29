@@ -260,15 +260,4 @@ def switch_to_window():
     email_input.send_keys(Keys.TAB)
     print('switching the window is completed.')
 
-def
-    url ="https://chercher.tech/practice/explicit-wait-sample-selenium-webdriver"
-    element = driver.find_element_by_id("popultae-text")
-    msg_xpath ="//h2[@id='h2]"']
-    msg_id = "h2"
-    msg_css_selector ="h2"
-    #locator1 = (By.XPATH, msg_xpath)
 
-    extd_txt = "Selenium Webdriver"
-    wedwait = WebDriverWait(driver, 60)
-
-    wdwait.until.(EC.text_to_be_present_in_element(By.XPATH),extd_txt)
