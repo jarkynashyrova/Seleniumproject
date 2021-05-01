@@ -161,7 +161,7 @@ Demo website: https://www.seleniumeasy.com/test/basic-first-form-demo.html
 Example of Locating the element uniquely
 1. xpath 
 ```python
-msg_xpath = '//form/div/input[@id="user-message"]'
+msg_xpath = '//form/div/input[@id="user-message" and @class="form-control"]'
 ```
 This is the xpath for the below element.
 ```html
@@ -190,7 +190,7 @@ WebDriver class simulates the browser actions.
 
 ```python
 from selenium import webdriver
-driver = webdriver.Chrome() # Chrome is class # driver is object
+driver = webdriver.Chrome()
 
 driver.back()
 driver.forward()
@@ -237,6 +237,36 @@ msg_xpah = "//input[@name = 'input-message']"
 
 ```
 
+### Agenda for next classes on Selenium:
+
+#### Selenium
+- handle drop down list with Select class
+- working with alerts
+- working with window pop up (switching between tabs)
+  
+- explicit wait vs implicit
+  WebDriver provides the WebDriverWait and
+expected_conditions classes to implement an explicit wait.
+  [practice website](https://chercher.tech/practice/explicit-wait-sample-selenium-webdriver)
+- Mouse movements
+    - drag and drop 
+- execute js >> alternative of button.click()
+    (we have seen how to scroll down on the page)
+
+#### Framework:
+- pytest unit testing library
+    - to generate test reports with pass and fail status.
+    - hooks(fixtures)
+    this will help you to better manager your execution
+    - how to run regression suites
+    
+- Page Object Modeling (designing patter)
+    - handle locators and page functions of each page 
+    - this is good when you work with complex project.
+    - helps you to maintain changing web elements
+    - Classes, Inheritance, encapsulation,  polymorphism
+
+
 ### Homework: 
 1. read about the building your own xpath: [reference](https://www.guru99.com/xpath-selenium.html)
 
@@ -254,5 +284,3 @@ msg_xpah = "//input[@name = 'input-message']"
 2. [HTML document and tags](https://www.w3schools.com/tags/tag_span.asp)
 3. [Learning Selenium Testing Tools with Python (book)](data/Learning_Selenium.pdf)
 4. [What is xpath and how to build them.](https://www.guru99.com/xpath-selenium.html)
-
-changing 
