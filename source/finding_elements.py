@@ -11,6 +11,7 @@
 # find_element_by_id(id)
 
 # start the browser
+import pytest
 from selenium import webdriver
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver import ActionChains
@@ -25,13 +26,13 @@ from utilities import *
 
 # implicit wait is defined once when you start the browser and this will apply all find element steps
 # this will disable ads , unwanted popups
-options = Options()
-options.add_argument('--disable-notifications')
+#options = Options()
+#options.add_argument('--disable-notifications')
 # options.add_argument('--headless')  # running the chrome on background
 
-driver = webdriver.Chrome(chrome_options=options)
-driver.implicitly_wait(5)
-driver.maximize_window()
+#driver = webdriver.Chrome(options=options)
+#driver.implicitly_wait(5)
+#driver.maximize_window()
 
 
 def open_website(url):
