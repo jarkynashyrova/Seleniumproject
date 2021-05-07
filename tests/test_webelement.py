@@ -2,24 +2,15 @@ from source.finding_elements import *
 import pytest
 print("Execution starting ...")
 
-# Scenario 1: Handling the Drop Down list
-#url_inputs = "https://www.seleniumeasy.com/test/basic-first-form-demo.html"
-# add scenario execution lines here
-
-
-# Scenario 2:
-# variables
-# call functions from finding_elements.py
-
 
 @pytest.mark.smoke
 @pytest.mark.checkbox
 def test_checkbox(driver):
     print("# Scenario 2: Handling CheckBox")
     url_checkbox = "https://www.seleniumeasy.com/test/basic-checkbox-demo.html"
-    open_website(url_checkbox)
+    open_website(driver, url_checkbox)
     #create steps to test checkbox using selenium
-    checkbox_test(driver)
+    checkbox_elements(driver)
 
 
 @pytest.mark.dropdown
@@ -32,7 +23,7 @@ def test_drop_down_multi_selct(driver):
     print("# Scenario 6: drop down multi select methods")
     drop_down_multi_select(driver)
 
-@pytest.markswitchTo
+@pytest.mark.switchTo
 def test_js_alerts(driver):
     print("# Scenario 7: handling the js alert")
     switch_to_alert(driver)

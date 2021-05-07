@@ -13,7 +13,7 @@
 # start the browser
 import pytest
 from selenium import webdriver
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, TimeoutException, WebDriverException
 from selenium.webdriver import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
@@ -22,33 +22,30 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
+
 from utilities import *
 
-# implicit wait is defined once when you start the browser and this will apply all find element steps
-# this will disable ads , unwanted popups
-#options = Options()
-#options.add_argument('--disable-notifications')
-# options.add_argument('--headless')  # running the chrome on background
-
-#driver = webdriver.Chrome(options=options)
-#driver.implicitly_wait(5)
-#driver.maximize_window()
 
 
-def open_website(url):
+
+def open_website(driver,url):
     """open the website, and click on 'No, thanks!' button"""
     try:
         driver.get(url)
         print(f"Title of the page 1: {driver.title}")
 
         # time.sleep(10)  # one way of holding the execution and to wait for something
+        wdwait = WebDriverWait(driver, 10)
+        wdwait.until(EC.visibility_of_element_located((By.ID, "site-name")))
+
         print("now clicking the 'No thanks' button..")
         driver.find_element_by_link_text('No, thanks!').click()
-    except NoSuchElementException as err:
-        print(f"pop did not appear this time.\n {err}")
+    except (WebDriverException, NoSuchElementException, TimeoutException) as err:
+        print(f"Unable to to open website correctly.\n {err}")
+        pytest.fail("unable to open website correctly.")
 
 
-def back_forward():
+def back_forward(driver):
     img1 = f'./../screenshots/{get_str_seconds()}_datapage.png'
     img2 = f'./../screenshots/{get_str_seconds()}_seleniumdemo.png'
 
@@ -63,7 +60,7 @@ def back_forward():
     time.sleep(5)
 
 
-def get_total_input_fields():
+def get_total_input_fields(driver):
     """
     find the "Enter a" input box
     find the "Enter b" input box
@@ -85,12 +82,12 @@ def get_total_input_fields():
     driver.get_screenshot_as_file(img1)
 
 
-def close_browser():
+def close_browser(driver):
     driver.close()  # close the current tab
     driver.quit()  # closes the browser
 
 
-def checkbox_test():
+def checkbox_test(driver):
     # todo: code here
     # find the element (using xpath) to check, and click
     check_xpath = "//input[@id='isAgeSelected']"
@@ -112,7 +109,7 @@ def checkbox_test():
     assert "Success" in msg_text
 
 
-def ecommerce_search():
+def ecommerce_search(driver):
     # find the element by id 'search_query_top'
     # search for dress (hit enter or click on search button)
 
@@ -138,7 +135,7 @@ def ecommerce_search():
     driver.refresh()
 
 
-def amazon_example():
+def amazon_example(driver):
     """
     demonstrates some methods from WebDriver Class.
     (current_url, driver.title, driver.clear,
@@ -163,7 +160,7 @@ def amazon_example():
     search_box.clear()
 
 
-def drop_down_select():
+def drop_down_select(driver):
     url_dropdown = "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"
     driver.get(url_dropdown)
     driver.refresh()
@@ -185,7 +182,7 @@ def drop_down_select():
         print(element.text)
 
 
-def drop_down_multi_select():
+def drop_down_multi_select(driver):
     url_dropdown = "https://www.seleniumeasy.com/test/basic-select-dropdown-demo.html"
     driver.get(url_dropdown)
     ddown_list = driver.find_element_by_id("multi-select")  # Select element with '<select>' tag
@@ -206,7 +203,7 @@ def drop_down_multi_select():
     selection.deselect_all()
 
 
-def switch_to_alert():
+def switch_to_alert(driver):
     driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html")
     driver.find_element_by_xpath("//button[@onclick='myAlertFunction()']").click()
     alert = driver.switch_to.alert
@@ -227,7 +224,7 @@ def switch_to_alert():
     alert2.accept()
 
 
-def switch_to_window():
+def switch_to_window(driver):
     driver.get("https://www.seleniumeasy.com/test/javascript-alert-box-demo.html")
 
     print(" ***** switching to window *************")
@@ -263,7 +260,7 @@ def switch_to_window():
     print('switching the window is completed.')
 
 
-def explicit_wait_methods():
+def explicit_wait_methods(driver):
     # Variables and objects
     url = "https://chercher.tech/practice/explicit-wait-sample-selenium-webdriver"
     # click button:  #populate-text
@@ -322,7 +319,7 @@ def explicit_wait_methods():
     print("case 4 completed!")
 
 
-def drag_drop_action():
+def drag_drop_action(driver):
     """
     Demonstrates to handle drag and drop mouse movements with Selenium.
     """
@@ -346,7 +343,7 @@ def drag_drop_action():
     print("completed drag and drop.")
 
 
-def drag_drop_action2():
+def drag_drop_action2(driver):
     """
     Demonstrates to handle drag and drop mouse movements with Selenium.
     """
@@ -369,7 +366,7 @@ def drag_drop_action2():
     print("completed drag and drop.")
 
 
-def drag_drop_action3():
+def drag_drop_action3(driver):
     # Step:
     # start the website
     # drag and drop item 1
@@ -388,7 +385,7 @@ def drag_drop_action3():
     print("drag and drop finished.")
 
 
-def move_mouse_action():
+def move_mouse_action(driver):
     driver.get("http://automationpractice.com/index.php")
 
     time.sleep(5)
