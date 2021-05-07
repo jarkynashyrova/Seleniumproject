@@ -22,7 +22,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.select import Select
 from selenium.webdriver.support.wait import WebDriverWait
 
-
+from src.pages.main_page import MainPage
 from utilities import *
 
 
@@ -112,26 +112,28 @@ def checkbox_test(driver):
 def ecommerce_search(driver):
     # find the element by id 'search_query_top'
     # search for dress (hit enter or click on search button)
+    main_page = MainPage(driver)
 
-    srch_box = driver.find_element_by_id("search_query_top")
-    srch_box.send_keys("dress")
-    srch_box.send_keys(Keys.RETURN)
-    time.sleep(5)
+    main_page.enter_search_text('dress')
 
+    #srch_box = driver.find_element_by_id("search_query_top")
+    #srch_box.send_keys("dress")
+    #srch_box.send_keys(Keys.RETURN)
+    #time.sleep(5)
+    main_page.hit_enter_on_search()
     # get the list of products and get the text out of each product
     #     use find elements to find products listed, this returns a list named 'products'
     #     loop through this list and use element.text
     # check the count of products
-    prods_xpath = "//ul[@class='product_list grid row']//a[@class='product-name']"
-    products = driver.find_elements_by_xpath(prods_xpath)  # list
-    prod_names = []
-    for product in products:
-        prod_names.append(product.text.strip())
+    print(main_page.get_product_names())
+    main_page.click_on_produc_by_index(-1)
+    main_page.click_sign_in_link()
+    driver.refresh()
 
     #     we have a list of elements, len(products)
-    print(f"we have {len(products)} products listed.")
+    #print(f"we have {len(products)} products listed.")
     # click on last product >  products[-1]
-    products[-1].click()
+    #products[-1].click()
     driver.refresh()
 
 
@@ -327,7 +329,7 @@ def drag_drop_action(driver):
     url = "https://www.seleniumeasy.com/test/drag-and-drop-demo.html"
     driver.get(url)
 
-    print("Identifying the source and target elements...")
+    print("Identifying the steps and target elements...")
     elem1 = driver.find_element_by_xpath("//span[contains(text(),'Draggable 1')]")
     elem2 = driver.find_element_by_xpath("//span[contains(text(),'Draggable 2')]")
     elem3 = driver.find_element_by_xpath("//span[contains(text(),'Draggable 3')]")
@@ -351,7 +353,7 @@ def drag_drop_action2(driver):
     driver.get(url)
     time.sleep(5)
 
-    print("Identifying the source and target elements...")
+    print("Identifying the steps and target elements...")
     elem1 = driver.find_element_by_xpath("//img[contains(@src, 'high_tatras_min.jpg')]")
     elem2 = driver.find_element_by_xpath("//img[contains(@src, 'high_tatras_min2.jpg')]")
     elem3 = driver.find_element_by_xpath("//img[contains(@src, 'high_tatras_min3.jpg')]")

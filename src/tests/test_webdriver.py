@@ -1,4 +1,3 @@
-from source.finding_elements import *
 import pytest
 
 print("Execution starting ...")
@@ -39,7 +38,7 @@ def test_webdriver_input_elements(driver):
 
 @pytest.mark.webdriver
 @pytest.mark.ecommerce
-@pytest.mark.skip
+#@pytest.mark.skip
 def test_ecommerce_products_example(driver):
     print("# Scenario 3 : working with multiple elements, ecommerce website")
     #go to this website and search the product

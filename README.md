@@ -170,7 +170,7 @@ Some text here
 </input>
 ```
 
-Please check the automation test example for finding the element and doing some action on this element. [find element by exapmle](source/finding_elements.py)
+Please check the automation test example for finding the element and doing some action on this element. [find element by exapmle](src/steps/finding_elements.py)
 
 
 ## 04/18/2021

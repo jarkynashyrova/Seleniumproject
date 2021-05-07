@@ -1,4 +1,3 @@
-from source.finding_elements import *
 import pytest
 print("Execution starting ...")
 
